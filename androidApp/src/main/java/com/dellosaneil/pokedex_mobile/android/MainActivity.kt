@@ -16,7 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dellosaneil.pokedex_mobile.Greeting
+import com.dellosaneil.pokedex_mobile.network.Test
+import org.koin.android.ext.android.inject
 
 @Composable
 fun MyApplicationTheme(
@@ -58,6 +59,9 @@ fun MyApplicationTheme(
 }
 
 class MainActivity : ComponentActivity() {
+
+    private val test: Test by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,7 +70,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(Greeting().greeting())
+                    Greeting(text = test.hello())
                 }
             }
         }
