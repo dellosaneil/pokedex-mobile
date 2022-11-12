@@ -1,6 +1,3 @@
-import Build_gradle.Versions.composeActivityVersion
-import Build_gradle.Versions.composeVersion
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -37,17 +34,18 @@ android {
 dependencies {
 
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.activity:activity-compose:$composeActivityVersion")
+
+    // Compose
+    implementation("androidx.compose.ui:ui:${Versions.Android.composeVersion}")
+    implementation("androidx.compose.ui:ui-tooling:${Versions.Android.composeVersion}")
+    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.Android.composeVersion}")
+    implementation("androidx.compose.foundation:foundation:${Versions.Android.composeVersion}")
+    implementation("androidx.compose.material:material:${Versions.Android.composeVersion}")
+    implementation("androidx.activity:activity-compose:${Versions.Android.composeActivityVersion}")
+
+    // Koin - DI
+    implementation("io.insert-koin:koin-core:${Versions.Shared.koinVersion}")
+    implementation("io.insert-koin:koin-android:${Versions.Android.koinVersion}")
+
+
 }
-
-object Versions {
-    const val composeVersion = "1.3.1"
-    const val composeActivityVersion = "1.6.1"
-}
-
-

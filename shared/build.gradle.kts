@@ -18,7 +18,12 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api("io.insert-koin:koin-core:${Versions.Shared.koinVersion}")
+                api("io.insert-koin:koin-test:${Versions.Shared.koinVersion}")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
