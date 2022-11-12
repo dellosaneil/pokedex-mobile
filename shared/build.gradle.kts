@@ -67,4 +67,5 @@ android {
 }
 apollo {
     packageName.set("com.dellosaneil")
+    generateKotlinModels.set(true)
 }
