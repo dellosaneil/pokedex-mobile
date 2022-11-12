@@ -1,10 +1,13 @@
+@file:Suppress("OPT_IN_USAGE")
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.apollographql.apollo3").version(Versions.Shared.graphQlVersion)
 }
 
 kotlin {
-
+    jvm()
     android()
     
     listOf(
@@ -22,6 +25,8 @@ kotlin {
             dependencies {
                 api("io.insert-koin:koin-core:${Versions.Shared.koinVersion}")
                 api("io.insert-koin:koin-test:${Versions.Shared.koinVersion}")
+                api("com.apollographql.apollo3:apollo-runtime:${Versions.Shared.graphQlVersion}")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Shared.coroutineVersion}")
             }
         }
         val commonTest by getting {
@@ -59,4 +64,7 @@ android {
         minSdk = 26
         targetSdk = 33
     }
+}
+apollo {
+    packageName.set("com.dellosaneil")
 }
