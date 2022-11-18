@@ -9,3 +9,13 @@ plugins {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+
+allprojects {
+    configurations {
+        all {
+            resolutionStrategy {
+                force("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Shared.coroutineNativeVersion}-native-mt")
+            }
+        }
+    }
+}
