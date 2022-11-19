@@ -3,8 +3,11 @@
 
 ### This is a Pet Project for Learning KMM 
 
-### Api Used:
+### API Used:
 Poke API https://beta.pokeapi.co/graphql/console/
+
+### Architecture Used: 
+MVVM
 
 #### Libraries used in Android:
 - Koin https://insert-koin.io/
