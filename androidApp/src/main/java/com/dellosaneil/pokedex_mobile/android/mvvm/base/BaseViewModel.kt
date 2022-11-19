@@ -1,10 +1,11 @@
 package com.dellosaneil.pokedex_mobile.android.mvvm.base
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<ViewState : BaseViewState, ViewEffect : BaseViewEffect> : ViewModel() {
     private val initialState: ViewState by lazy {
@@ -29,5 +30,20 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEffect : BaseViewEff
 
     suspend fun emitViewEffect(effect: ViewEffect) {
         viewEffectChannel.send(element = effect)
+    }
+
+    fun runFunction(
+        successBlock: suspend () -> ViewState,
+        errorBlock: (Throwable) -> ViewState,
+        loadingBlock: () -> ViewState,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                updateViewState(updatedViewState = loadingBlock())
+                updateViewState(updatedViewState = successBlock())
+            } catch (e: Exception) {
+                updateViewState(errorBlock(e))
+            }
+        }
     }
 }
