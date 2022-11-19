@@ -24,7 +24,7 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEffect : BaseViewEff
         return viewState.value
     }
 
-    fun updateViewState(updatedViewState: ViewState) {
+    private fun updateViewState(updatedViewState: ViewState) {
         _viewState.value = updatedViewState
     }
 
@@ -44,6 +44,24 @@ abstract class BaseViewModel<ViewState : BaseViewState, ViewEffect : BaseViewEff
             } catch (e: Exception) {
                 updateViewState(errorBlock(e))
             }
+        }
+    }
+
+    fun runFunction(
+        successBlock: suspend () -> ViewState,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateViewState(updatedViewState = successBlock())
+        }
+    }
+
+    fun runFunction(
+        successBlock: suspend () -> ViewState,
+        loadingBlock: () -> ViewState,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateViewState(updatedViewState = loadingBlock())
+            updateViewState(updatedViewState = successBlock())
         }
     }
 }
