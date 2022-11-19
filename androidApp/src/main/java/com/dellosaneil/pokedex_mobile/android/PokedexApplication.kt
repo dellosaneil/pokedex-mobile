@@ -1,6 +1,7 @@
 package com.dellosaneil.pokedex_mobile.android
 
 import android.app.Application
+import com.dellosaneil.pokedex_mobile.android.di.viewModelModule
 import com.dellosaneil.pokedex_mobile.di.appModule
 import com.dellosaneil.pokedex_mobile.di.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +16,7 @@ class PokedexApplication : Application() {
         startKoin {
             androidContext(androidContext = this@PokedexApplication)
             androidLogger()
-            modules(listOf(appModule(), networkModule()))
+            modules(listOf(appModule(), networkModule(), viewModelModule()))
         }
     }
 }
