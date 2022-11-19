@@ -1,7 +1,9 @@
 package com.dellosaneil.pokedex_mobile.di
 
-import com.dellosaneil.pokedex_mobile.network.CoreRepository
-import com.dellosaneil.pokedex_mobile.network.impl.CoreRepositoryImpl
+import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
+import com.dellosaneil.pokedex_mobile.mapper.impl.MapPreviewPokemonImpl
+import com.dellosaneil.pokedex_mobile.repository.CoreRepository
+import com.dellosaneil.pokedex_mobile.repository.impl.CoreRepositoryImpl
 import com.dellosaneil.pokedex_mobile.network.CoreService
 import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonList
 import com.dellosaneil.pokedex_mobile.network.usecase.impl.FetchPokemonListImpl
@@ -20,4 +22,5 @@ fun networkModule() = module {
     singleOf(::CoreRepositoryImpl) { bind<CoreRepository>() }
 
     factoryOf(::FetchPokemonListImpl) { bind<FetchPokemonList>() }
+    factoryOf(::MapPreviewPokemonImpl) { bind<MapPreviewPokemon>() }
 }

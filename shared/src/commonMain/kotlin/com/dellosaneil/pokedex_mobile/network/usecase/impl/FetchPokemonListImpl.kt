@@ -1,7 +1,7 @@
 package com.dellosaneil.pokedex_mobile.network.usecase.impl
 
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
-import com.dellosaneil.pokedex_mobile.network.CoreRepository
+import com.dellosaneil.pokedex_mobile.repository.CoreRepository
 import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonList
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

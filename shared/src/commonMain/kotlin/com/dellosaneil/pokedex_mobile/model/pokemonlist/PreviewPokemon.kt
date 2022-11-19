@@ -5,4 +5,5 @@ import com.dellosaneil.pokedex_mobile.model.common.Type
 data class PreviewPokemon(
     val name: String,
     val type: List<Type>,
+    val image: String,
 )

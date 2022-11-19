@@ -1,4 +1,4 @@
-package com.dellosaneil.pokedex_mobile.network
+package com.dellosaneil.pokedex_mobile.repository
 
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 

@@ -17,7 +17,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.0"
+        kotlinCompilerExtensionVersion = Versions.Project.composeCompiler
     }
     packagingOptions {
         resources {
@@ -47,5 +47,10 @@ dependencies {
     implementation("io.insert-koin:koin-core:${Versions.Shared.koinVersion}")
     implementation("io.insert-koin:koin-android:${Versions.Android.koinVersion}")
 
+    // Accompanist
+    implementation("com.github.skydoves:landscapist-glide:${Versions.Android.glideVersion}")
+
+    // Timber
+    implementation ("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
 
 }
