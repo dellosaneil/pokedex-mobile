@@ -27,6 +27,7 @@ kotlin {
                 api("io.insert-koin:koin-test:${Versions.Shared.koinVersion}")
                 api("com.apollographql.apollo3:apollo-runtime:${Versions.Shared.graphQlVersion}")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Shared.coroutineVersion}")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Shared.serializationVersion}")
             }
         }
         val commonTest by getting {
