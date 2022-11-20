@@ -18,9 +18,9 @@ import org.koin.androidx.compose.koinViewModel
 fun PokemonListScreen(
     navigator: DestinationsNavigator,
 ) {
-    val viewModel : PokemonListViewModel = koinViewModel()
+    val viewModel: PokemonListViewModel = koinViewModel()
     val viewState by viewModel.viewState.collectAsState()
-    if(viewState.pokemonList.isNotEmpty()) {
+    if (viewState.pokemonList.isNotEmpty()) {
         Text(text = viewState.pokemonList.first().name)
     }
 }
