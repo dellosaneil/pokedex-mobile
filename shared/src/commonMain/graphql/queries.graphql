@@ -1,5 +1,5 @@
-query PokemonList {
-    pokemon_v2_pokemon(limit: 10) {
+query PokemonList($limit: Int, $offset: Int) {
+    pokemon_v2_pokemon(limit: $limit, offset: $offset) {
         name
         pokemon_v2_pokemontypes {
             type_id

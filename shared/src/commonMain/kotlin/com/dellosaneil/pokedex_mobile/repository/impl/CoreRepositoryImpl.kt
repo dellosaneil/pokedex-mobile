@@ -1,5 +1,6 @@
 package com.dellosaneil.pokedex_mobile.repository.impl
 
+import com.apollographql.apollo3.api.Optional
 import com.dellosaneil.PokemonListQuery
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
@@ -13,7 +14,8 @@ class CoreRepositoryImpl(
 ) : KoinComponent, CoreRepository {
 
     override suspend fun fetchPokemonList(): List<PreviewPokemon> {
-        val data = coreService().query(PokemonListQuery()).execute().data
+        val data =
+            coreService().query(query = PokemonListQuery(limit = Optional.Present(1), offset = Optional.Present(1))).execute().data
         return mapPreviewPokemon(data = data)
     }
 }
