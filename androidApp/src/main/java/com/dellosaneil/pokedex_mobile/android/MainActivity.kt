@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.dellosaneil.pokedex_mobile.android.theme.PokedexTheme
-import com.dellosaneil.pokedex_mobile.android.ui.NavGraphs
+import com.dellosaneil.pokedex_mobile.android.ui.pokemonlist.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
 
 class MainActivity : ComponentActivity() {
