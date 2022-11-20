@@ -1,19 +1,39 @@
 package com.dellosaneil.pokedex_mobile.repository.impl
 
+import com.apollographql.apollo3.api.Optional
 import com.dellosaneil.PokemonListQuery
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 import com.dellosaneil.pokedex_mobile.network.CoreService
+import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination
 import com.dellosaneil.pokedex_mobile.repository.CoreRepository
-import org.koin.core.component.KoinComponent
 
 class CoreRepositoryImpl(
     private val coreService: CoreService,
     private val mapPreviewPokemon: MapPreviewPokemon,
-) : KoinComponent, CoreRepository {
+    private val pokedexPagination: PokedexPagination,
+) : CoreRepository {
 
-    override suspend fun fetchPokemonList(): List<PreviewPokemon> {
-        val data = coreService().query(PokemonListQuery()).execute().data
-        return mapPreviewPokemon(data = data)
+    companion object {
+        private const val POKEMON_LIST_LIMIT = 20
+    }
+
+
+    override suspend fun fetchPokemonList(isInitialLoad: Boolean): List<PreviewPokemon> {
+        val response = if (isInitialLoad) {
+            pokedexPagination.initialLoad(
+                callback = { limit ->
+                    coreService().query(query = PokemonListQuery(limit = Optional.Present(value = limit),
+                        offset = Optional.Present(value = 0))).execute()
+                },
+                limit = POKEMON_LIST_LIMIT,
+            )
+        } else {
+            pokedexPagination.loadMore(callback = { limit, offset ->
+                coreService().query(query = PokemonListQuery(limit = Optional.Present(limit),
+                    offset = Optional.Present(offset))).execute()
+            })
+        }
+        return mapPreviewPokemon(data = response.data as PokemonListQuery.Data?)
     }
 }
