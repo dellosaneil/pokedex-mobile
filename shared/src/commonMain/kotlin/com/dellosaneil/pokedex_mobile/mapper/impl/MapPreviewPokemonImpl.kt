@@ -28,6 +28,7 @@ class MapPreviewPokemonImpl : MapPreviewPokemon {
                     Type.getType(id = it.type_id ?: 0)
                 },
                 image = image,
+                id = pokemon.id,
             )
         } ?: emptyList()
     }
