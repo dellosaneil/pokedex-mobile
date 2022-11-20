@@ -1,35 +1,51 @@
 package com.dellosaneil.pokedex_mobile.android.mvvm.pokemonlist
 
 import com.dellosaneil.pokedex_mobile.android.mvvm.base.BaseViewModel
+import com.dellosaneil.pokedex_mobile.network.pagination.PaginationStateHelper
 import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonList
 
-class PokemonListViewModel(private val fetchPokemonList: FetchPokemonList) :
+class PokemonListViewModel(
+    private val fetchPokemonList: FetchPokemonList,
+    private val paginationStateHelper: PaginationStateHelper,
+) :
     BaseViewModel<PokemonListViewState, PokemonListViewEffect>() {
 
     override fun initialState() = PokemonListViewState.initialState()
 
     init {
-        retrievePokemonList()
+        retrievePokemonList(isInitialLoad = true)
     }
 
-
-    private fun retrievePokemonList() {
+    private fun retrievePokemonList(isInitialLoad: Boolean) {
         runFunction(
             successBlock = {
-                val pokemonList = fetchPokemonList(isInitialLoad = true,)
+                val newPokemonList = fetchPokemonList(isInitialLoad = isInitialLoad)
+                val pokemonList = if(isInitialLoad) {
+                    newPokemonList
+                } else {
+                    val newList = getCurrentState().pokemonList.toMutableList()
+                    newList.addAll(newPokemonList)
+                    newList
+                }
+
                 getCurrentState().copy(
-                    pokemonList = pokemonList, isLoading = false,
-                    throwable = null,
+                    pokemonList = pokemonList,
+                    paginationState = paginationStateHelper.success(
+                        isInitialLoad = isInitialLoad,
+                    )
                 )
             }, errorBlock = { throwable ->
                 getCurrentState().copy(
-                    throwable = throwable,
-                    isLoading = false,
+                    paginationState = paginationStateHelper.error(
+                        isInitialLoad = isInitialLoad,
+                        throwable = throwable,
+                    )
                 )
             }, loadingBlock = {
                 getCurrentState().copy(
-                    throwable = null,
-                    isLoading = true,
+                    paginationState = paginationStateHelper.loading(
+                        isInitialLoad = isInitialLoad,
+                    )
                 )
             }
         )

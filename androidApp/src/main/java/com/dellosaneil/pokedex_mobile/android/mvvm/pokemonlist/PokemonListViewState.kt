@@ -2,18 +2,17 @@ package com.dellosaneil.pokedex_mobile.android.mvvm.pokemonlist
 
 import com.dellosaneil.pokedex_mobile.android.mvvm.base.BaseViewState
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
+import com.dellosaneil.pokedex_mobile.network.pagination.PaginationState
 
 data class PokemonListViewState(
     val pokemonList: List<PreviewPokemon>,
-    val throwable: Throwable?,
-    val isLoading: Boolean,
+    val paginationState: PaginationState,
 ) : BaseViewState {
     companion object {
         fun initialState(): PokemonListViewState {
             return PokemonListViewState(
                 pokemonList = emptyList(),
-                isLoading = true,
-                throwable = null,
+                paginationState = PaginationState.initialState(),
             )
         }
     }

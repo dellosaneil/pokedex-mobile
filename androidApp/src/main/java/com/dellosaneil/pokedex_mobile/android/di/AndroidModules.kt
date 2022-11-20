@@ -5,5 +5,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 fun viewModelModule() = module {
-    viewModel { PokemonListViewModel(get()) }
+    viewModel { PokemonListViewModel(fetchPokemonList = get(), paginationStateHelper = get()) }
 }

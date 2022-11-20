@@ -8,6 +8,8 @@ import com.dellosaneil.pokedex_mobile.network.CoreService
 import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonList
 import com.dellosaneil.pokedex_mobile.network.usecase.impl.FetchPokemonListImpl
 import com.dellosaneil.pokedex_mobile.network.impl.CoreServiceImpl
+import com.dellosaneil.pokedex_mobile.network.pagination.PaginationStateHelper
+import com.dellosaneil.pokedex_mobile.network.pagination.impl.PaginationStateHelperImpl
 import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination
 import com.dellosaneil.pokedex_mobile.network.pagination.impl.PokedexPaginationImpl
 import org.koin.core.module.dsl.singleOf
@@ -16,7 +18,7 @@ import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 
 fun appModule() = module {
-
+    singleOf(::PaginationStateHelperImpl) { bind<PaginationStateHelper>() }
 }
 
 fun networkModule() = module {
