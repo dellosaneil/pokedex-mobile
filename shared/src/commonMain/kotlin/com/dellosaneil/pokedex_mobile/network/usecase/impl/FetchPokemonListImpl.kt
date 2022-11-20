@@ -3,14 +3,10 @@ package com.dellosaneil.pokedex_mobile.network.usecase.impl
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 import com.dellosaneil.pokedex_mobile.repository.CoreRepository
 import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonList
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class FetchPokemonListImpl : KoinComponent,
-    FetchPokemonList {
-    private val repository: CoreRepository by inject()
+class FetchPokemonListImpl(private val repository: CoreRepository) : FetchPokemonList {
 
-    override suspend fun invoke() : List<PreviewPokemon> {
-        return repository.fetchPokemonList()
+    override suspend fun invoke(isInitialLoad: Boolean): List<PreviewPokemon> {
+        return repository.fetchPokemonList(isInitialLoad = isInitialLoad)
     }
 }

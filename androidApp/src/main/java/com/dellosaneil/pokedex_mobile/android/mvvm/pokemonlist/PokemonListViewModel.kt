@@ -16,7 +16,7 @@ class PokemonListViewModel(private val fetchPokemonList: FetchPokemonList) :
     private fun retrievePokemonList() {
         runFunction(
             successBlock = {
-                val pokemonList = fetchPokemonList()
+                val pokemonList = fetchPokemonList(isInitialLoad = true,)
                 getCurrentState().copy(
                     pokemonList = pokemonList, isLoading = false,
                     throwable = null,
