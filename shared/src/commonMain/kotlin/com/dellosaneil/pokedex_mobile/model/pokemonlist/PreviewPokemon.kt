@@ -7,4 +7,15 @@ data class PreviewPokemon(
     val name: String,
     val type: List<Type>,
     val image: String,
-)
+) {
+    companion object {
+        fun compose() : PreviewPokemon {
+            return PreviewPokemon(
+                id = 1,
+                name = "Bulbasaur",
+                type = listOf(Type.GRASS),
+                image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+            )
+        }
+    }
+}

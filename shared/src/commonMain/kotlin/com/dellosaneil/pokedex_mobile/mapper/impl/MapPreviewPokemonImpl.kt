@@ -11,7 +11,9 @@ import kotlinx.serialization.json.jsonPrimitive
 class MapPreviewPokemonImpl : MapPreviewPokemon {
 
     companion object {
+        private const val OTHER_KEY = "other"
         private const val POKEMON_IMAGE_KEY = "front_default"
+        private const val DREAM_WORLD_KEY = "dream_world"
     }
 
 
@@ -21,7 +23,9 @@ class MapPreviewPokemonImpl : MapPreviewPokemon {
                 it.sprites
             }.first()
             val jsonElement = Json.parseToJsonElement(spriteList)
-            val image = jsonElement.jsonObject[POKEMON_IMAGE_KEY]?.jsonPrimitive?.content ?: ""
+            val jsonOther = jsonElement.jsonObject[OTHER_KEY]
+            val jsonDreamWorld = jsonOther?.jsonObject?.get(DREAM_WORLD_KEY)
+            val image = jsonDreamWorld?.jsonObject?.get(POKEMON_IMAGE_KEY)?.jsonPrimitive?.content ?: ""
             PreviewPokemon(
                 name = pokemon.name,
                 type = pokemon.pokemon_v2_pokemontypes.map {

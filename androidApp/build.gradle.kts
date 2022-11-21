@@ -55,12 +55,14 @@ dependencies {
     // Koin - DI
     implementation("io.insert-koin:koin-core:${Versions.Shared.koinVersion}")
     implementation("io.insert-koin:koin-android:${Versions.Android.koinVersion}")
-    implementation( "io.insert-koin:koin-androidx-compose:${Versions.Android.koinVersion}")
-    // Accompanist
-    implementation("com.github.skydoves:landscapist-glide:${Versions.Android.glideVersion}")
+    implementation("io.insert-koin:koin-androidx-compose:${Versions.Android.koinVersion}")
+
+    // Coil
+    implementation("com.github.skydoves:landscapist-coil:${Versions.Android.coilVersion}")
+    implementation("io.coil-kt:coil-svg:${Versions.Android.coilSvgExtensionVersion}")
 
     // Timber
-    implementation ("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
+    implementation("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
 
     // Navigation
     implementation("io.github.raamcosta.compose-destinations:core:${Versions.Android.navigationVersion}")
