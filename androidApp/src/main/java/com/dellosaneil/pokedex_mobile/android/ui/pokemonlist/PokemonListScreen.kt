@@ -11,10 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dellosaneil.pokedex_mobile.android.mvvm.pokemonlist.PokemonListViewModel
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
+import com.dellosaneil.pokedex_mobile.android.util.defaultImageLoader
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -27,9 +29,10 @@ import org.koin.androidx.compose.koinViewModel
 fun PokemonListScreen(
     navigator: DestinationsNavigator,
 ) {
+    val context = LocalContext.current
     val viewModel: PokemonListViewModel = koinViewModel()
     val viewState by viewModel.viewState.collectAsState()
-
+    val imageLoader = defaultImageLoader(context = context)
     LazyVerticalGrid(
         modifier = Modifier
             .background(color = getComposeColors().commonColors.white)
@@ -38,7 +41,11 @@ fun PokemonListScreen(
         contentPadding = PaddingValues(all = 4.dp)
     ) {
         items(items = viewState.pokemonList, key = { it.id }) { pokemon ->
-            PokemonListCard(modifier = Modifier.padding(all = 2.dp), previewPokemon = pokemon,)
+            PokemonListCard(
+                modifier = Modifier.padding(all = 2.dp),
+                previewPokemon = pokemon,
+                imageLoader = imageLoader,
+            )
         }
     }
 }

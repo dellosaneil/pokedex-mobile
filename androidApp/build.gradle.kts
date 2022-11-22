@@ -58,8 +58,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:${Versions.Android.koinVersion}")
 
     // Coil
-    implementation("com.github.skydoves:landscapist-coil:${Versions.Android.coilVersion}")
     implementation("io.coil-kt:coil-svg:${Versions.Android.coilSvgExtensionVersion}")
+    implementation("io.coil-kt:coil-compose:${Versions.Android.coilComposeVersion}")
 
     // Timber
     implementation("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
