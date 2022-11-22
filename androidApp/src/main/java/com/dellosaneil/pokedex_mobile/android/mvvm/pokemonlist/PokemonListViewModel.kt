@@ -16,38 +16,43 @@ class PokemonListViewModel(
         retrievePokemonList(isInitialLoad = true)
     }
 
-    private fun retrievePokemonList(isInitialLoad: Boolean) {
-        runFunction(
-            successBlock = {
-                val newPokemonList = fetchPokemonList(isInitialLoad = isInitialLoad)
-                val pokemonList = if(isInitialLoad) {
-                    newPokemonList
-                } else {
-                    val newList = getCurrentState().pokemonList.toMutableList()
-                    newList.addAll(newPokemonList)
-                    newList
-                }
+    fun retrievePokemonList(isInitialLoad: Boolean) {
+        if (!getCurrentState().paginationState.isLoadMore || isInitialLoad) {
+            runFunction(
+                successBlock = {
+                    val newPokemonList = fetchPokemonList(isInitialLoad = isInitialLoad)
+                    val pokemonList = if (isInitialLoad) {
+                        newPokemonList
+                    } else {
+                        val newList = getCurrentState().pokemonList.toMutableList()
+                        newList.addAll(newPokemonList)
+                        newList.distinctBy { pokemon ->
+                            pokemon.id
+                        }
+                        newList
+                    }
 
-                getCurrentState().copy(
-                    pokemonList = pokemonList,
-                    paginationState = paginationStateHelper.success(
-                        isInitialLoad = isInitialLoad,
+                    getCurrentState().copy(
+                        pokemonList = pokemonList,
+                        paginationState = paginationStateHelper.success(
+                            isInitialLoad = isInitialLoad,
+                        )
                     )
-                )
-            }, errorBlock = { throwable ->
-                getCurrentState().copy(
-                    paginationState = paginationStateHelper.error(
-                        isInitialLoad = isInitialLoad,
-                        throwable = throwable,
+                }, errorBlock = { throwable ->
+                    getCurrentState().copy(
+                        paginationState = paginationStateHelper.error(
+                            isInitialLoad = isInitialLoad,
+                            throwable = throwable,
+                        )
                     )
-                )
-            }, loadingBlock = {
-                getCurrentState().copy(
-                    paginationState = paginationStateHelper.loading(
-                        isInitialLoad = isInitialLoad,
+                }, loadingBlock = {
+                    getCurrentState().copy(
+                        paginationState = paginationStateHelper.loading(
+                            isInitialLoad = isInitialLoad,
+                        )
                     )
-                )
-            }
-        )
+                }
+            )
+        }
     }
 }

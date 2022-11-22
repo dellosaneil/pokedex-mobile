@@ -6,8 +6,8 @@ import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination
 
 class PokedexPaginationImpl : PokedexPagination {
 
-    private var offset = -1
     private var limit = -1
+    private var page = -1
 
     private var isEndOfPage = false
     private var isLoading = false
@@ -18,7 +18,7 @@ class PokedexPaginationImpl : PokedexPagination {
         limit: Int,
     ): ApolloResponse<*> {
         this.limit = limit
-        this.offset = 0
+        this.page = 0
         isEndOfPage = false
         isLoading = true
         val response = callback(limit)
@@ -28,7 +28,8 @@ class PokedexPaginationImpl : PokedexPagination {
     }
 
     override suspend fun loadMore(callback: suspend (Int, Int) -> ApolloResponse<*>): ApolloResponse<*> {
-        offset++
+        page++
+        val offset = page * limit
         val response = try {
             isLoading = true
             callback(limit, offset)

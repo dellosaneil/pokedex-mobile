@@ -38,7 +38,7 @@ fun PokemonListScreen(
             .background(color = getComposeColors().commonColors.white)
             .fillMaxSize(),
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(vertical = 16.dp, horizontal = 12.dp,)
+        contentPadding = PaddingValues(vertical = 16.dp, horizontal = 12.dp)
     ) {
         items(items = viewState.pokemonList, key = { it.id }) { pokemon ->
             PokemonListCard(
@@ -46,6 +46,9 @@ fun PokemonListScreen(
                 previewPokemon = pokemon,
                 imageLoader = imageLoader,
             )
+            if (pokemon.id == viewState.pokemonList.last().id) {
+                viewModel.retrievePokemonList(isInitialLoad = false)
+            }
         }
     }
 }
