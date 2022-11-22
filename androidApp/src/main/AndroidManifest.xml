@@ -9,7 +9,7 @@
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="DataExtractionRules">
+        tools:ignore="DataExtractionRules,MissingApplicationIcon">
         <activity
             android:name=".MainActivity"
             android:exported="true">

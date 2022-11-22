@@ -1,6 +1,6 @@
 package com.dellosaneil.pokedex_mobile.model.common
 
-enum class Type {
+enum class PokemonType {
     NORMAL,
     FIGHTING,
     FLYING,
@@ -27,7 +27,7 @@ enum class Type {
     }
 
     companion object {
-        fun getType(id: Int): Type {
+        fun getType(id: Int): PokemonType {
             if (id == 10001 || id == 0) {
                 return UNKNOWN
             }
