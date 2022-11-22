@@ -19,7 +19,7 @@ import com.dellosaneil.pokedex_mobile.android.util.getColor
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 
 private val CARD_HEIGHT = 145.dp
-
+private const val IMAGE_HEIGHT_RATIO = 1.5f
 
 @Composable
 fun PokemonListCard(
@@ -38,7 +38,7 @@ fun PokemonListCard(
             .fillMaxSize()
             .padding(all = 8.dp)
         ) {
-            val imageWidth = (maxWidth / 2)
+            val maxHeight = (maxHeight.value / IMAGE_HEIGHT_RATIO).toInt().dp
             Row(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -58,10 +58,10 @@ fun PokemonListCard(
                 }
                 AsyncImage(
                     modifier = Modifier
-                        .width(width = imageWidth)
+                        .heightIn(max = maxHeight)
                         .align(alignment = Alignment.Bottom)
                         .weight(weight = 1f),
-                    model =  previewPokemon.image,
+                    model = previewPokemon.image,
                     contentDescription = null,
                     imageLoader = imageLoader,
                     contentScale = ContentScale.Fit,
