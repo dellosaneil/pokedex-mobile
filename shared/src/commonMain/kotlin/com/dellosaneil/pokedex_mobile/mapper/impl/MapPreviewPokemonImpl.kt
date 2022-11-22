@@ -2,7 +2,7 @@ package com.dellosaneil.pokedex_mobile.mapper.impl
 
 import com.dellosaneil.PokemonListQuery
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
-import com.dellosaneil.pokedex_mobile.model.common.Type
+import com.dellosaneil.pokedex_mobile.model.common.PokemonType
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
@@ -29,7 +29,7 @@ class MapPreviewPokemonImpl : MapPreviewPokemon {
             PreviewPokemon(
                 name = pokemon.name,
                 type = pokemon.pokemon_v2_pokemontypes.map {
-                    Type.getType(id = it.type_id ?: 0)
+                    PokemonType.getType(id = it.type_id ?: 0)
                 },
                 image = image,
                 id = pokemon.id,

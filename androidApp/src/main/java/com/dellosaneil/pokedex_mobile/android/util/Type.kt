@@ -3,30 +3,30 @@ package com.dellosaneil.pokedex_mobile.android.util
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
-import com.dellosaneil.pokedex_mobile.model.common.Type
+import com.dellosaneil.pokedex_mobile.model.common.PokemonType
 
 @Composable
-fun Type.getColor() : Color {
+fun PokemonType.getColor() : Color {
     return when(this) {
-        Type.NORMAL -> getComposeColors().typeColors.normal
-        Type.FIGHTING -> getComposeColors().typeColors.fighting
-        Type.FLYING -> getComposeColors().typeColors.flying
-        Type.POISON -> getComposeColors().typeColors.poison
-        Type.GROUND -> getComposeColors().typeColors.ground
-        Type.ROCK -> getComposeColors().typeColors.rock
-        Type.BUG -> getComposeColors().typeColors.bug
-        Type.GHOST -> getComposeColors().typeColors.ghost
-        Type.STEEL -> getComposeColors().typeColors.steel
-        Type.FIRE -> getComposeColors().typeColors.fire
-        Type.WATER -> getComposeColors().typeColors.water
-        Type.GRASS -> getComposeColors().typeColors.grass
-        Type.ELECTRIC -> getComposeColors().typeColors.electric
-        Type.PSYCHIC -> getComposeColors().typeColors.psychic
-        Type.ICE -> getComposeColors().typeColors.ice
-        Type.DRAGON -> getComposeColors().typeColors.dragon
-        Type.DARK -> getComposeColors().typeColors.dark
-        Type.FAIRY -> getComposeColors().typeColors.fairy
-        Type.SHADOW -> getComposeColors().typeColors.dark
-        Type.UNKNOWN -> getComposeColors().typeColors.normal
+        PokemonType.NORMAL -> getComposeColors().typeColors.normal
+        PokemonType.FIGHTING -> getComposeColors().typeColors.fighting
+        PokemonType.FLYING -> getComposeColors().typeColors.flying
+        PokemonType.POISON -> getComposeColors().typeColors.poison
+        PokemonType.GROUND -> getComposeColors().typeColors.ground
+        PokemonType.ROCK -> getComposeColors().typeColors.rock
+        PokemonType.BUG -> getComposeColors().typeColors.bug
+        PokemonType.GHOST -> getComposeColors().typeColors.ghost
+        PokemonType.STEEL -> getComposeColors().typeColors.steel
+        PokemonType.FIRE -> getComposeColors().typeColors.fire
+        PokemonType.WATER -> getComposeColors().typeColors.water
+        PokemonType.GRASS -> getComposeColors().typeColors.grass
+        PokemonType.ELECTRIC -> getComposeColors().typeColors.electric
+        PokemonType.PSYCHIC -> getComposeColors().typeColors.psychic
+        PokemonType.ICE -> getComposeColors().typeColors.ice
+        PokemonType.DRAGON -> getComposeColors().typeColors.dragon
+        PokemonType.DARK -> getComposeColors().typeColors.dark
+        PokemonType.FAIRY -> getComposeColors().typeColors.fairy
+        PokemonType.SHADOW -> getComposeColors().typeColors.dark
+        PokemonType.UNKNOWN -> getComposeColors().typeColors.normal
     }
 }

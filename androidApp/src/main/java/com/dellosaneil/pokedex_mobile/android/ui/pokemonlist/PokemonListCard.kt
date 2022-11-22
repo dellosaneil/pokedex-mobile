@@ -15,6 +15,7 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeTypographyFactory.getComposeTypography
+import com.dellosaneil.pokedex_mobile.android.ui.common.PokemonTypeChip
 import com.dellosaneil.pokedex_mobile.android.util.getColor
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 
@@ -48,13 +49,23 @@ fun PokemonListCard(
                     modifier = Modifier
                         .fillMaxHeight()
                         .weight(weight = 1f),
-                    verticalArrangement = Arrangement.spacedBy(space = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.Top),
                 ) {
                     Text(
                         text = previewPokemon.name,
                         style = getComposeTypography().semiBold14,
                         color = getComposeColors().commonColors.white,
                     )
+                    val chipBackground = previewPokemon.type.first().getColor()
+                    previewPokemon.type.forEach { pokemonType ->
+                        PokemonTypeChip(
+                            modifier = Modifier,
+                            type = pokemonType,
+                            onClick = {},
+                            isEnabled = false,
+                            chipBackground = chipBackground,
+                        )
+                    }
                 }
                 AsyncImage(
                     modifier = Modifier
