@@ -1,12 +1,13 @@
 package com.dellosaneil.pokedex_mobile.android.ui.pokemonlist
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,56 +29,54 @@ fun PokemonListCard(
     previewPokemon: PreviewPokemon,
     imageLoader: ImageLoader,
 ) {
-    Card(
+    BoxWithConstraints(
         modifier = modifier
-            .height(height = CARD_HEIGHT),
-        shape = RoundedCornerShape(size = 8.dp),
-        backgroundColor = previewPokemon.type.first().getColor().copy(alpha = 0.95f),
-        elevation = 1.dp,
-    ) {
-        BoxWithConstraints(modifier = Modifier
-            .fillMaxSize()
+            .clip(shape = RoundedCornerShape(size = 8.dp))
+            .background(color = previewPokemon.type
+                .first()
+                .getColor()
+                .copy(alpha = 0.90f))
             .padding(all = 8.dp)
+            .height(height = CARD_HEIGHT),
+    ) {
+        val maxHeight = (maxHeight.value / IMAGE_HEIGHT_RATIO).toInt().dp
+        Row(
+            modifier = Modifier
+                .padding(all = 4.dp)
+                .fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            val maxHeight = (maxHeight.value / IMAGE_HEIGHT_RATIO).toInt().dp
-            Row(
+            val chipBackground = previewPokemon.type.first().getColor()
+            Column(
                 modifier = Modifier
-                    .fillMaxSize(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                    .fillMaxHeight()
+                    .weight(weight = 1f),
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(weight = 1f),
-                    verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.Top),
-                ) {
-                    Text(
-                        text = previewPokemon.name,
-                        style = getComposeTypography().semiBold14,
-                        color = getComposeColors().commonColors.white,
-                    )
-                    val chipBackground = previewPokemon.type.first().getColor()
-                    previewPokemon.type.forEach { pokemonType ->
-                        PokemonTypeChip(
-                            modifier = Modifier,
-                            type = pokemonType,
-                            onClick = {},
-                            isEnabled = false,
-                            chipBackground = chipBackground,
-                        )
-                    }
-                }
-                AsyncImage(
-                    modifier = Modifier
-                        .heightIn(max = maxHeight)
-                        .align(alignment = Alignment.Bottom)
-                        .weight(weight = 1f),
-                    model = previewPokemon.image,
-                    contentDescription = null,
-                    imageLoader = imageLoader,
-                    contentScale = ContentScale.Fit,
+                Text(
+                    text = previewPokemon.name,
+                    style = getComposeTypography().semiBold14,
+                    color = getComposeColors().commonColors.white,
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                previewPokemon.type.forEach { pokemonType ->
+                    PokemonTypeChip(
+                        modifier = Modifier,
+                        type = pokemonType,
+                        chipBackground = chipBackground,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
             }
+            AsyncImage(
+                modifier = Modifier
+                    .heightIn(max = maxHeight)
+                    .align(alignment = Alignment.Bottom)
+                    .weight(weight = 1f),
+                model = previewPokemon.image,
+                contentDescription = null,
+                imageLoader = imageLoader,
+                contentScale = ContentScale.Fit,
+            )
         }
     }
 }
