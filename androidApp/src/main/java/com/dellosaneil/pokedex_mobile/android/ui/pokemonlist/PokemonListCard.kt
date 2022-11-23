@@ -5,15 +5,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
 import coil.compose.AsyncImage
+import com.dellosaneil.pokedex_mobile.android.R
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeTypographyFactory.getComposeTypography
 import com.dellosaneil.pokedex_mobile.android.ui.common.PokemonTypeChip
@@ -28,14 +33,16 @@ fun PokemonListCard(
     modifier: Modifier,
     previewPokemon: PreviewPokemon,
     imageLoader: ImageLoader,
+    angle: Float,
 ) {
+    val isFinished = remember{mutableStateOf(false)}
     BoxWithConstraints(
         modifier = modifier
             .clip(shape = RoundedCornerShape(size = 8.dp))
             .background(color = previewPokemon.type
                 .first()
                 .getColor()
-                .copy(alpha = 0.90f))
+                .copy(alpha = 0.85f))
             .padding(all = 8.dp)
             .height(height = CARD_HEIGHT),
     ) {
@@ -67,16 +74,43 @@ fun PokemonListCard(
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            AsyncImage(
+            Box(
                 modifier = Modifier
-                    .heightIn(max = maxHeight)
+                    .fillMaxHeight()
                     .align(alignment = Alignment.Bottom)
                     .weight(weight = 1f),
-                model = previewPokemon.image,
-                contentDescription = null,
-                imageLoader = imageLoader,
-                contentScale = ContentScale.Fit,
-            )
+                contentAlignment = Alignment.BottomCenter,
+            ) {
+                AsyncImage(
+                    model = R.drawable.pokeball, contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer {
+                            if (!isFinished.value) {
+                                rotationZ = angle
+                            }
+                        },
+                    colorFilter = ColorFilter.tint(color = getComposeColors().commonColors.lightGray),
+                    imageLoader = imageLoader,
+                )
+                AsyncImage(
+                    modifier = Modifier
+                        .heightIn(max = maxHeight),
+                    model = previewPokemon.image,
+                    contentDescription = null,
+                    imageLoader = imageLoader,
+                    contentScale = ContentScale.Fit,
+                    onLoading = {
+                        isFinished.value = false
+                    },
+                    onSuccess = {
+                        isFinished.value = true
+                    },
+                    onError = {
+                        isFinished.value = false
+                    }
+                )
+            }
         }
     }
 }
@@ -90,5 +124,6 @@ private fun PreviewPokemonListCard() {
             .width(400.dp),
         previewPokemon = PreviewPokemon.compose(),
         imageLoader = ImageLoader(LocalContext.current),
+        angle = 0f,
     )
 }
