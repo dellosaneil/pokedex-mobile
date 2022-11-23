@@ -25,7 +25,7 @@ import com.dellosaneil.pokedex_mobile.android.ui.common.PokemonTypeChip
 import com.dellosaneil.pokedex_mobile.android.util.getColor
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 
-private val CARD_HEIGHT = 145.dp
+val CARD_HEIGHT = 145.dp
 private const val IMAGE_HEIGHT_RATIO = 1.5f
 
 @Composable
