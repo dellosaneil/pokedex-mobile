@@ -25,7 +25,7 @@ object PokedexColorPalette {
     object CommonColors {
         const val White = 0xffffffff
         const val Black = 0xff000000
-        const val LightGray = 0xffD3D3D3
+        const val LightGray = 0xfff9f9f9
     }
 
 }

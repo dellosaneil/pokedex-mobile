@@ -12,7 +12,7 @@ private const val IMAGE_CACHE = "image_cache"
 @Composable
 fun defaultImageLoader(context: Context): ImageLoader {
     return remember {
-        ImageLoader.Builder(context)
+        ImageLoader.Builder(context = context)
             .components {
                 add(SvgDecoder.Factory())
             }.diskCache {
@@ -20,6 +20,7 @@ fun defaultImageLoader(context: Context): ImageLoader {
                     .directory(context.cacheDir.resolve(relative = IMAGE_CACHE))
                     .build()
             }
+            .crossfade(enable = true)
             .build()
     }
 }

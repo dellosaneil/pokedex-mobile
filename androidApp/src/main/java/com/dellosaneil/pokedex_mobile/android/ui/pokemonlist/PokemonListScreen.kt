@@ -1,5 +1,6 @@
 package com.dellosaneil.pokedex_mobile.android.ui.pokemonlist
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.EmptyDestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 
+
+private const val DURATION_MILLIS_LOADING = 7500
+
 @RootNavGraph(start = true)
 @Destination
 @Composable
@@ -33,6 +37,14 @@ fun PokemonListScreen(
     val viewModel: PokemonListViewModel = koinViewModel()
     val viewState by viewModel.viewState.collectAsState()
     val imageLoader = defaultImageLoader(context = context)
+    val infiniteTransition = rememberInfiniteTransition()
+    val angle: Float by infiniteTransition.animateFloat(
+        initialValue = 0F,
+        targetValue = 360F,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = DURATION_MILLIS_LOADING, easing = LinearEasing)
+        )
+    )
     LazyVerticalGrid(
         modifier = Modifier
             .background(color = getComposeColors().commonColors.white)
@@ -45,6 +57,7 @@ fun PokemonListScreen(
                 modifier = Modifier.padding(all = 2.dp),
                 previewPokemon = pokemon,
                 imageLoader = imageLoader,
+                angle = angle,
             )
             if (pokemon.id == viewState.pokemonList.last().id) {
                 viewModel.retrievePokemonList(isInitialLoad = false)
