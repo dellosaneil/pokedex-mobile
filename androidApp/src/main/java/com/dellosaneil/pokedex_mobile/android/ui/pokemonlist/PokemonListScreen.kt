@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -46,33 +45,46 @@ fun PokemonListScreen(
             animation = tween(durationMillis = DURATION_MILLIS_LOADING, easing = LinearEasing)
         )
     )
-    val lazyGridState = rememberLazyGridState()
     LazyVerticalGrid(
         modifier = Modifier
-            .background(color = getComposeColors().commonColors.white)
+            .background(color = getComposeColors().commonColors.lightGray)
             .fillMaxSize(),
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Fixed(count = 2),
         contentPadding = PaddingValues(vertical = 16.dp, horizontal = 12.dp),
-        state = lazyGridState,
+        userScrollEnabled = !viewState.paginationState.isInitialLoad,
     ) {
-        items(items = viewState.pokemonList, key = { it.id }) { pokemon ->
-            PokemonListCard(
-                modifier = Modifier.padding(all = 2.dp),
-                previewPokemon = pokemon,
-                imageLoader = imageLoader,
-                angle = angle,
-            )
-            if (pokemon.id == viewState.pokemonList.last().id) {
-                viewModel.retrievePokemonList(isInitialLoad = false)
+        when {
+            viewState.paginationState.isInitialLoad -> {
+                items(10) {
+                    PokemonListLoading(modifier = Modifier.padding(all = 2.dp),
+                        angle = angle,
+                        imageLoader = imageLoader)
+                }
             }
-        }
-        if (viewState.paginationState.isLoadMore) {
-            repeat(2) {
-                item {
-                    PokemonListLoading(
+            viewState.paginationState.initialLoadError != null -> {
+
+            }
+            else -> {
+                items(items = viewState.pokemonList, key = { it.id }) { pokemon ->
+                    PokemonListCard(
                         modifier = Modifier.padding(all = 2.dp),
-                        angle = angle, imageLoader = imageLoader,
+                        previewPokemon = pokemon,
+                        imageLoader = imageLoader,
+                        angle = angle,
                     )
+                    if (pokemon.id == viewState.pokemonList.last().id) {
+                        viewModel.retrievePokemonList(isInitialLoad = false)
+                    }
+                }
+                if (viewState.paginationState.isLoadMore) {
+                    repeat(2) {
+                        item {
+                            PokemonListLoading(
+                                modifier = Modifier.padding(all = 2.dp),
+                                angle = angle, imageLoader = imageLoader,
+                            )
+                        }
+                    }
                 }
             }
         }
