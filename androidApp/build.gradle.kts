@@ -65,6 +65,6 @@ dependencies {
     implementation("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
 
     // Navigation
-    implementation("io.github.raamcosta.compose-destinations:core:${Versions.Android.navigationVersion}")
+    implementation("io.github.raamcosta.compose-destinations:animations-core:${Versions.Android.navigationVersion}")
     ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.Android.navigationVersion}")
 }
