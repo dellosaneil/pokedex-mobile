@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Pokedex Mobile</string>
+
+<!--    Pokemon List -->
+    <string name="pokemon_list_search_placeholder">Search Pokemon</string>
 </resources>

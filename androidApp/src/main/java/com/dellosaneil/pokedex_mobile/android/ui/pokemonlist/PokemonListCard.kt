@@ -90,7 +90,7 @@ fun PokemonListCard(
                                 rotationZ = angle
                             }
                         },
-                    colorFilter = ColorFilter.tint(color = getComposeColors().commonColors.lightGray),
+                    colorFilter = ColorFilter.tint(color = getComposeColors().commonColors.lightGray1),
                     imageLoader = imageLoader,
                 )
                 AsyncImage(
