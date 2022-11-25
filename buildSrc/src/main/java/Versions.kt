@@ -22,6 +22,7 @@ object Versions {
         const val timberVersion = "5.0.1"
         const val navigationVersion = "1.7.27-beta"
         const val googleKspVersion = "1.7.20-1.0.8"
+        const val accompanistPagerVersion = "0.13.0"
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,7 +41,7 @@ fun PokemonDetailScreen(
     val context = LocalContext.current
     val pokemonDetail = PokemonDetail.compose()
     val imageLoader = defaultImageLoader(context = context)
-
+    val coroutineScope = rememberCoroutineScope()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -56,7 +57,13 @@ fun PokemonDetailScreen(
                     }
             )
         },
-        backgroundColor = backgroundColor.toColor().copy(alpha = 0.85f)
+        backgroundColor = backgroundColor.toColor().copy(alpha = 0.80f),
+        bottomBar = {
+            PokemonDetailBottomBar(
+                modifier = Modifier.fillMaxWidth(),
+                coroutineScope = coroutineScope,
+            )
+        }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -99,7 +106,7 @@ fun PokemonDetailScreen(
 fun PreviewPokemonDetailScreen() {
     PokemonDetailScreen(
         id = 0,
-        backgroundColor = PokemonType.getType(9).getColor().toArgb().toLong(),
+        backgroundColor = PokemonType.getType(12).getColor().toArgb().toLong(),
         navigator = EmptyDestinationsNavigator,
     )
 }

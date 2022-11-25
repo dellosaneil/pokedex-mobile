@@ -68,4 +68,9 @@ dependencies {
     // Navigation
     implementation("io.github.raamcosta.compose-destinations:animations-core:${Versions.Android.navigationVersion}")
     ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.Android.navigationVersion}")
+
+    // Accompanist
+    implementation("com.google.accompanist:accompanist-pager:${Versions.Android.accompanistPagerVersion}")
+    implementation("com.google.accompanist:accompanist-pager-indicators:${Versions.Android.accompanistPagerVersion}")
+
 }
