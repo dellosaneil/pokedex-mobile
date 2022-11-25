@@ -1,6 +1,7 @@
 package com.dellosaneil.pokedex_mobile.android.ui.pokemonlist
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -10,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -34,14 +36,17 @@ fun PokemonListCard(
     previewPokemon: PreviewPokemon,
     imageLoader: ImageLoader,
     angle: Float,
+    onPokemonClicked: (Int, Color) -> Unit,
 ) {
-    val isFinished = remember{mutableStateOf(false)}
+    val backgroundColor = previewPokemon.type.first().getColor()
+    val isFinished = remember { mutableStateOf(false) }
     BoxWithConstraints(
         modifier = modifier
             .clip(shape = RoundedCornerShape(size = 8.dp))
-            .background(color = previewPokemon.type
-                .first()
-                .getColor()
+            .clickable {
+                onPokemonClicked(previewPokemon.id, backgroundColor)
+            }
+            .background(color = backgroundColor
                 .copy(alpha = 0.85f))
             .padding(all = 8.dp)
             .height(height = CARD_HEIGHT),
@@ -53,7 +58,6 @@ fun PokemonListCard(
                 .fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            val chipBackground = previewPokemon.type.first().getColor()
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -69,7 +73,7 @@ fun PokemonListCard(
                     PokemonTypeChip(
                         modifier = Modifier,
                         type = pokemonType,
-                        chipBackground = chipBackground,
+                        chipBackground = backgroundColor,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -125,5 +129,7 @@ private fun PreviewPokemonListCard() {
         previewPokemon = PreviewPokemon.compose(),
         imageLoader = ImageLoader(LocalContext.current),
         angle = 0f,
-    )
+    ) { _, _ ->
+
+    }
 }

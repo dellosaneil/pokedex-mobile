@@ -60,6 +60,7 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-svg:${Versions.Android.coilSvgExtensionVersion}")
     implementation("io.coil-kt:coil-compose:${Versions.Android.coilComposeVersion}")
+    implementation("io.coil-kt:coil-gif:${Versions.Android.coilGifExtensionVersion}")
 
     // Timber
     implementation("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")

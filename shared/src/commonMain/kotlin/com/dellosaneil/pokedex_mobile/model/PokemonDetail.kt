@@ -15,7 +15,7 @@ data class PokemonDetail(
             return PokemonDetail(
                 name = "Bulbasaur",
                 pokemonType = listOf(PokemonType.GRASS),
-                image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                image = "https://media.tenor.com/6nHb-yHC2pkAAAAi/bulbasaur.gif",
                 stat = listOf(1,2,3),
                 height = 10,
                 weight = 50,

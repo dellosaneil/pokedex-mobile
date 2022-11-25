@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import com.dellosaneil.pokedex_mobile.android.mvvm.pokemonlist.PokemonListViewMo
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.ui.common.CommonFloatingActionButton
 import com.dellosaneil.pokedex_mobile.android.ui.common.CommonTextField
+import com.dellosaneil.pokedex_mobile.android.ui.destinations.PokemonDetailScreenDestination
 import com.dellosaneil.pokedex_mobile.android.ui.transitions.PokedexTransitions
 import com.dellosaneil.pokedex_mobile.android.util.defaultImageLoader
 import com.dellosaneil.pokedex_mobile.android.util.isScrollingUp
@@ -111,7 +113,12 @@ fun PokemonListScreen(
                             previewPokemon = pokemon,
                             imageLoader = imageLoader,
                             angle = angle,
-                        )
+                        ) { pokemonId, backgroundColor ->
+                            navigator.navigate(PokemonDetailScreenDestination(
+                                id = pokemonId,
+                                backgroundColor = backgroundColor.toArgb().toLong(),
+                            ))
+                        }
                         if (pokemon.id == viewState.pokemonList.last().id) {
                             viewModel.retrievePokemonList(isInitialLoad = false)
                         }
