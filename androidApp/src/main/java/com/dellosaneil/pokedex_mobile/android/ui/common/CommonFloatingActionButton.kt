@@ -32,7 +32,7 @@ fun CommonFloatingActionButton(
             .clip(shape = CircleShape)
             .clickable { onClick() }
             .background(color = backgroundColor)
-            .padding(all = 4.dp)
+            .padding(all = 6.dp)
     ) {
         Icon(
             modifier = Modifier.size(size = 24.dp),
