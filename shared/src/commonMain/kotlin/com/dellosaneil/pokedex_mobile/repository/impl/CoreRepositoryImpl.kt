@@ -1,8 +1,11 @@
 package com.dellosaneil.pokedex_mobile.repository.impl
 
 import com.apollographql.apollo3.api.Optional
+import com.dellosaneil.PokemonDetailQuery
 import com.dellosaneil.PokemonListQuery
+import com.dellosaneil.pokedex_mobile.mapper.MapPokemonDetail
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
+import com.dellosaneil.pokedex_mobile.model.PokemonDetail
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 import com.dellosaneil.pokedex_mobile.network.CoreService
 import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination
@@ -12,6 +15,7 @@ class CoreRepositoryImpl(
     private val coreService: CoreService,
     private val mapPreviewPokemon: MapPreviewPokemon,
     private val pokedexPagination: PokedexPagination,
+    private val mapPokemonDetail: MapPokemonDetail,
 ) : CoreRepository {
 
     companion object {
@@ -35,5 +39,12 @@ class CoreRepositoryImpl(
             })
         }
         return mapPreviewPokemon(data = response.data as PokemonListQuery.Data?)
+    }
+
+    override suspend fun fetchPokemonDetail(id: Int): PokemonDetail {
+        val response =
+            coreService().query(query = PokemonDetailQuery(limit = Optional.Present(value = 1),
+                offset = Optional.Present(value = id))).execute()
+        return mapPokemonDetail(data = response.data)
     }
 }

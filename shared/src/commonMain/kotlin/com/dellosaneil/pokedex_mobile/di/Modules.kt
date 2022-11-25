@@ -1,5 +1,7 @@
 package com.dellosaneil.pokedex_mobile.di
 
+import com.dellosaneil.pokedex_mobile.mapper.MapPokemonDetail
+import com.dellosaneil.pokedex_mobile.mapper.impl.MapPokemonDetailImpl
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
 import com.dellosaneil.pokedex_mobile.mapper.impl.MapPreviewPokemonImpl
 import com.dellosaneil.pokedex_mobile.repository.CoreRepository
@@ -12,6 +14,8 @@ import com.dellosaneil.pokedex_mobile.network.pagination.PaginationStateHelper
 import com.dellosaneil.pokedex_mobile.network.pagination.impl.PaginationStateHelperImpl
 import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination
 import com.dellosaneil.pokedex_mobile.network.pagination.impl.PokedexPaginationImpl
+import com.dellosaneil.pokedex_mobile.network.usecase.FetchPokemonDetail
+import com.dellosaneil.pokedex_mobile.network.usecase.impl.FetchPokemonDetailImpl
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.koin.core.module.dsl.bind
@@ -28,4 +32,6 @@ fun networkModule() = module {
     factoryOf(::FetchPokemonListImpl) { bind<FetchPokemonList>() }
     factoryOf(::MapPreviewPokemonImpl) { bind<MapPreviewPokemon>() }
     factoryOf(::PokedexPaginationImpl) { bind<PokedexPagination>() }
+    factoryOf(::MapPokemonDetailImpl) { bind<MapPokemonDetail>() }
+    factoryOf(::FetchPokemonDetailImpl) { bind<FetchPokemonDetail>() }
 }
