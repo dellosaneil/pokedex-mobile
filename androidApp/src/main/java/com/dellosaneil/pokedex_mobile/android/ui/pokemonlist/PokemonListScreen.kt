@@ -18,6 +18,7 @@ import com.dellosaneil.pokedex_mobile.android.mvvm.pokemonlist.PokemonListViewMo
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.ui.common.CommonFloatingActionButton
 import com.dellosaneil.pokedex_mobile.android.ui.common.CommonTextField
+import com.dellosaneil.pokedex_mobile.android.ui.transitions.PokedexTransitions
 import com.dellosaneil.pokedex_mobile.android.util.defaultImageLoader
 import com.dellosaneil.pokedex_mobile.android.util.isScrollingUp
 import com.ramcosta.composedestinations.annotation.Destination
@@ -30,7 +31,7 @@ import org.koin.androidx.compose.koinViewModel
 private const val DURATION_MILLIS_LOADING = 7500
 
 @RootNavGraph(start = true)
-@Destination
+@Destination(style = PokedexTransitions::class)
 @Composable
 fun PokemonListScreen(
     navigator: DestinationsNavigator,
