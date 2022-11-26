@@ -2,17 +2,25 @@ package com.dellosaneil.pokedex_mobile.android.ui.pokemondetail
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dellosaneil.pokedex_mobile.android.R
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeTypographyFactory.getComposeTypography
@@ -38,10 +46,8 @@ fun PokemonDetailAboutTab(
             style = getComposeTypography().bold20,
             color = getComposeColors().commonColors.black,
         )
-        AboutDetail(textRes = R.string.pokemon_detail_gender,
-            value = stringResource(id = R.string.pokemon_detail_gender_value,
-                aboutPokemon.gender.first,
-                aboutPokemon.gender.second))
+        GenderDetail(textRes = R.string.pokemon_detail_gender,
+            gender = aboutPokemon.gender)
         AboutDetail(textRes = R.string.pokemon_detail_egg_groups, value = aboutPokemon.eggGroups)
         AboutDetail(textRes = R.string.pokemon_detail_egg_cycle, value = aboutPokemon.eggCycle)
     }
@@ -68,6 +74,57 @@ private fun AboutDetail(
     )
 }
 
+@Composable
+private fun GenderDetail(
+    @StringRes textRes: Int,
+    gender: Pair<Float, Float>,
+) {
+    val annotatedString = buildAnnotatedString {
+        appendInlineContent(id = "male")
+        append("${gender.first}%")
+        append("\t")
+        appendInlineContent(id = "female")
+        append("${gender.second}%")
+    }
+    val inlineContent = mapOf(
+        Pair("male", InlineTextContent(
+            Placeholder(
+                width = 16.sp,
+                height = 16.sp,
+                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+            )
+        ) {
+            Icon(
+                painterResource(id = R.drawable.male),
+                contentDescription = null,
+                tint = getComposeColors().commonColors.blue1,
+            )
+        }),
+        Pair("female",
+            InlineTextContent(placeholder = Placeholder(width = 16.sp,
+                height = 16.sp,
+                placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter)) {
+                Icon(
+                    painterResource(id = R.drawable.female),
+                    contentDescription = null,
+                    tint = getComposeColors().commonColors.pink1,
+                )
+            })
+    )
+    Text(
+        modifier = Modifier.wrapContentWidth(),
+        text = stringResource(id = textRes),
+        style = getComposeTypography().regular14,
+        color = getComposeColors().commonColors.lightGray3,
+    )
+    Text(
+        modifier = Modifier.wrapContentWidth(),
+        text = annotatedString,
+        style = getComposeTypography().regular14,
+        color = getComposeColors().commonColors.black,
+        inlineContent = inlineContent,
+    )
+}
 
 @Preview(showBackground = true, backgroundColor = 0xffffffff)
 @Composable

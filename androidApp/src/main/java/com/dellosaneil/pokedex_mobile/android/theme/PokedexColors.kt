@@ -7,18 +7,18 @@ import androidx.compose.ui.graphics.Color
 import com.dellosaneil.pokedex_mobile.android.util.toColor
 
 class TypeColors(
-    val normal : Color = PokedexColorPalette.TypeColors.Normal.toColor(),
-    val fire : Color = PokedexColorPalette.TypeColors.Fire.toColor(),
-    val water : Color = PokedexColorPalette.TypeColors.Water.toColor(),
+    val normal: Color = PokedexColorPalette.TypeColors.Normal.toColor(),
+    val fire: Color = PokedexColorPalette.TypeColors.Fire.toColor(),
+    val water: Color = PokedexColorPalette.TypeColors.Water.toColor(),
     val electric: Color = PokedexColorPalette.TypeColors.Electric.toColor(),
-    val grass : Color = PokedexColorPalette.TypeColors.Grass.toColor(),
+    val grass: Color = PokedexColorPalette.TypeColors.Grass.toColor(),
     val ice: Color = PokedexColorPalette.TypeColors.Ice.toColor(),
     val fighting: Color = PokedexColorPalette.TypeColors.Fighting.toColor(),
-    val poison : Color = PokedexColorPalette.TypeColors.Poison.toColor(),
+    val poison: Color = PokedexColorPalette.TypeColors.Poison.toColor(),
     val flying: Color = PokedexColorPalette.TypeColors.Flying.toColor(),
     val psychic: Color = PokedexColorPalette.TypeColors.Psychic.toColor(),
     val bug: Color = PokedexColorPalette.TypeColors.Bug.toColor(),
-    val rock :Color = PokedexColorPalette.TypeColors.Rock.toColor(),
+    val rock: Color = PokedexColorPalette.TypeColors.Rock.toColor(),
     val ghost: Color = PokedexColorPalette.TypeColors.Ghost.toColor(),
     val dragon: Color = PokedexColorPalette.TypeColors.Dragon.toColor(),
     val dark: Color = PokedexColorPalette.TypeColors.Dark.toColor(),
@@ -28,12 +28,14 @@ class TypeColors(
 )
 
 class CommonColors(
-    val white : Color = PokedexColorPalette.CommonColors.White.toColor(),
-    val black : Color = PokedexColorPalette.CommonColors.Black.toColor(),
-    val lightGray1 : Color = PokedexColorPalette.CommonColors.LightGray1.toColor(),
+    val white: Color = PokedexColorPalette.CommonColors.White.toColor(),
+    val black: Color = PokedexColorPalette.CommonColors.Black.toColor(),
+    val lightGray1: Color = PokedexColorPalette.CommonColors.LightGray1.toColor(),
     val lightGray2: Color = PokedexColorPalette.CommonColors.LightGray2.toColor(),
     val lightGray3: Color = PokedexColorPalette.CommonColors.LightGray3.toColor(),
     val lightBlue1: Color = PokedexColorPalette.CommonColors.LightBlue1.toColor(),
+    val pink1: Color = PokedexColorPalette.CommonColors.Pink1.toColor(),
+    val blue1: Color = PokedexColorPalette.CommonColors.Blue1.toColor(),
 )
 
 class PokedexColors(

@@ -13,7 +13,6 @@
     <string name="pokemon_detail_abilities">Abilities</string>
     <string name="pokemon_detail_breeding">Breeding</string>
     <string name="pokemon_detail_gender">Gender</string>
-    <string name="pokemon_detail_gender_value">%1$.2f %2$.2f</string>
     <string name="pokemon_detail_egg_groups">Egg Groups</string>
     <string name="pokemon_detail_egg_cycle">Egg Cycle</string>
     <string name="pokemon_detail_height_value">%1$.2f cm</string>
