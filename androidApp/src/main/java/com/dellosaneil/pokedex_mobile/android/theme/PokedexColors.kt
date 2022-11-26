@@ -32,6 +32,7 @@ class CommonColors(
     val black : Color = PokedexColorPalette.CommonColors.Black.toColor(),
     val lightGray1 : Color = PokedexColorPalette.CommonColors.LightGray1.toColor(),
     val lightGray2: Color = PokedexColorPalette.CommonColors.LightGray2.toColor(),
+    val lightGray3: Color = PokedexColorPalette.CommonColors.LightGray3.toColor(),
     val lightBlue1: Color = PokedexColorPalette.CommonColors.LightBlue1.toColor(),
 )
 

@@ -26,7 +26,7 @@ import com.dellosaneil.pokedex_mobile.android.ui.transitions.PokedexTransitions
 import com.dellosaneil.pokedex_mobile.android.util.defaultImageLoader
 import com.dellosaneil.pokedex_mobile.android.util.getColor
 import com.dellosaneil.pokedex_mobile.android.util.toColor
-import com.dellosaneil.pokedex_mobile.model.PokemonDetail
+import com.dellosaneil.pokedex_mobile.model.pokemondetail.PokemonDetail
 import com.dellosaneil.pokedex_mobile.model.common.PokemonType
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -62,6 +62,7 @@ fun PokemonDetailScreen(
             PokemonDetailBottomBar(
                 modifier = Modifier.fillMaxWidth(),
                 coroutineScope = coroutineScope,
+                pokemonDetail = pokemonDetail,
             )
         }
     ) { paddingValues ->

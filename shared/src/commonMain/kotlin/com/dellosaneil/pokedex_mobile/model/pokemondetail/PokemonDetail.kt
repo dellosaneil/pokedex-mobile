@@ -1,14 +1,13 @@
-package com.dellosaneil.pokedex_mobile.model
+package com.dellosaneil.pokedex_mobile.model.pokemondetail
 
 import com.dellosaneil.pokedex_mobile.model.common.PokemonType
 
 data class PokemonDetail(
     val name: String,
     val image: String,
-    val weight: Int,
-    val height: Int,
     val stat: List<Int>,
     val pokemonType: List<PokemonType>,
+    val aboutPokemon: AboutPokemon,
 ) {
     companion object {
         fun compose() : PokemonDetail {
@@ -17,8 +16,7 @@ data class PokemonDetail(
                 pokemonType = listOf(PokemonType.GRASS),
                 image = "https://media.tenor.com/6nHb-yHC2pkAAAAi/bulbasaur.gif",
                 stat = listOf(1,2,3),
-                height = 10,
-                weight = 50,
+                aboutPokemon = AboutPokemon.compose(),
             )
         }
     }
