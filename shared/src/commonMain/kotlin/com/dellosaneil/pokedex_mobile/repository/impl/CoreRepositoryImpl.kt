@@ -5,7 +5,7 @@ import com.dellosaneil.PokemonDetailQuery
 import com.dellosaneil.PokemonListQuery
 import com.dellosaneil.pokedex_mobile.mapper.MapPokemonDetail
 import com.dellosaneil.pokedex_mobile.mapper.MapPreviewPokemon
-import com.dellosaneil.pokedex_mobile.model.PokemonDetail
+import com.dellosaneil.pokedex_mobile.model.pokemondetail.PokemonDetail
 import com.dellosaneil.pokedex_mobile.model.pokemonlist.PreviewPokemon
 import com.dellosaneil.pokedex_mobile.network.CoreService
 import com.dellosaneil.pokedex_mobile.network.pagination.PokedexPagination

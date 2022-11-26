@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pokemon_detail_pager">
+        <item>About</item>
+        <item>Base Stats</item>
+        <item>Evolution</item>
+        <item>Moves</item>
+    </string-array>
+</resources>

@@ -27,7 +27,10 @@ object PokedexColorPalette {
         const val Black = 0xff000000
         const val LightGray1 = 0xffececec
         const val LightGray2 = 0xffD3D3D3
+        const val LightGray3 = 0xffB1B3B4
         const val LightBlue1 = 0xff7EC8E3
+        const val Pink1 = 0xffffa9d0
+        const val Blue1 = 0xff081790
     }
 
 }

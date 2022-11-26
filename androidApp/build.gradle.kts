@@ -60,6 +60,7 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-svg:${Versions.Android.coilSvgExtensionVersion}")
     implementation("io.coil-kt:coil-compose:${Versions.Android.coilComposeVersion}")
+    implementation("io.coil-kt:coil-gif:${Versions.Android.coilGifExtensionVersion}")
 
     // Timber
     implementation("com.jakewharton.timber:timber:${Versions.Android.timberVersion}")
@@ -67,4 +68,9 @@ dependencies {
     // Navigation
     implementation("io.github.raamcosta.compose-destinations:animations-core:${Versions.Android.navigationVersion}")
     ksp("io.github.raamcosta.compose-destinations:ksp:${Versions.Android.navigationVersion}")
+
+    // Accompanist
+    implementation("com.google.accompanist:accompanist-pager:${Versions.Android.accompanistPagerVersion}")
+    implementation("com.google.accompanist:accompanist-pager-indicators:${Versions.Android.accompanistPagerVersion}")
+
 }

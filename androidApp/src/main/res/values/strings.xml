@@ -4,4 +4,17 @@
 
 <!--    Pokemon List -->
     <string name="pokemon_list_search_placeholder">Search Pokemon</string>
+    
+    
+<!--    Pokemon Detail-->
+    <string name="pokemon_detail_species">Species</string>
+    <string name="pokemon_detail_height">Height</string>
+    <string name="pokemon_detail_weight">Weight</string>
+    <string name="pokemon_detail_abilities">Abilities</string>
+    <string name="pokemon_detail_breeding">Breeding</string>
+    <string name="pokemon_detail_gender">Gender</string>
+    <string name="pokemon_detail_egg_groups">Egg Groups</string>
+    <string name="pokemon_detail_egg_cycle">Egg Cycle</string>
+    <string name="pokemon_detail_height_value">%1$.2f cm</string>
+    <string name="pokemon_detail_weight_value">%1$.2f kg</string>
 </resources>
