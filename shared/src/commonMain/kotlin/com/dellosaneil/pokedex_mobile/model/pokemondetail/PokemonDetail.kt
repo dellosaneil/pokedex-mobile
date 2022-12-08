@@ -10,12 +10,12 @@ data class PokemonDetail(
     val aboutPokemon: AboutPokemon,
 ) {
     companion object {
-        fun compose() : PokemonDetail {
+        fun compose(): PokemonDetail {
             return PokemonDetail(
                 name = "Bulbasaur",
                 pokemonType = listOf(PokemonType.GRASS),
                 image = "https://media.tenor.com/6nHb-yHC2pkAAAAi/bulbasaur.gif",
-                stat = listOf(1,2,3),
+                stat = listOf(1, 2, 3),
                 aboutPokemon = AboutPokemon.compose(),
             )
         }
