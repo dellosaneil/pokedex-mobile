@@ -1,5 +1,5 @@
-query PokemonDetail($limit: Int, $offset: Int) {
-    pokemon_v2_pokemon(limit: $limit, offset: $offset) {
+query PokemonDetail($id: Int) {
+    pokemon_v2_pokemon(where: {id: {_eq: $id}}) {
         name
         pokemon_v2_pokemonsprites {
             sprites
@@ -7,17 +7,20 @@ query PokemonDetail($limit: Int, $offset: Int) {
         weight
         height
         id
-        pokemon_v2_pokemonmoves {
-            pokemon_v2_move {
-                name
-                id
-            }
-        }
         pokemon_v2_pokemonstats {
             base_stat
         }
         pokemon_v2_pokemontypes {
             type_id
+        }
+        pokemon_v2_pokemonabilities {
+            pokemon_v2_ability {
+                name
+                id
+            }
+        }
+        pokemon_v2_pokemonspecy {
+            gender_rate
         }
     }
 }
