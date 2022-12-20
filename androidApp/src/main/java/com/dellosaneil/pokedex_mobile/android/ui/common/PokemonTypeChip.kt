@@ -1,6 +1,8 @@
 package com.dellosaneil.pokedex_mobile.android.ui.common
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -30,22 +32,29 @@ fun PokemonTypeChip(
             .clickable(
                 enabled = onClick != null,
                 onClick = { onClick?.invoke() },
+            )
+            .border(
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = getComposeColors().commonColors.white,
+                ),
+                shape = RoundedCornerShape(8.dp),
             ),
     ) {
         Text(
             text = type.toString(),
             style = getComposeTypography().regular12,
             color = getComposeColors().commonColors.white,
-            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp,)
+            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
         )
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewPokemonTypeChip() {
     PokemonTypeChip(
-        modifier = Modifier,
+        modifier = Modifier.padding(8.dp),
         type = PokemonType.getType(12),
         onClick = {},
         chipBackground = PokemonType.getType(12).getColor(),

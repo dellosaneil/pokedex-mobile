@@ -64,7 +64,7 @@ fun PokemonDetailScreen(
                     }
             )
         },
-        backgroundColor = backgroundColor.toColor().copy(alpha = 0.80f),
+        backgroundColor = backgroundColor.toColor(),
         bottomBar = {
             if(viewState.pokemonDetail != null) {
                 PokemonDetailBottomBar(

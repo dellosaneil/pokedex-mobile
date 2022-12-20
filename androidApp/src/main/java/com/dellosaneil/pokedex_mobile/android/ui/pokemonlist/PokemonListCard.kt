@@ -46,8 +46,7 @@ fun PokemonListCard(
             .clickable {
                 onPokemonClicked(previewPokemon.id, backgroundColor)
             }
-            .background(color = backgroundColor
-                .copy(alpha = 0.85f))
+            .background(color = backgroundColor)
             .padding(all = 8.dp)
             .height(height = CARD_HEIGHT),
     ) {
