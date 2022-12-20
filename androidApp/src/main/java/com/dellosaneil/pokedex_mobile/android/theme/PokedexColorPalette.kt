@@ -2,24 +2,24 @@ package com.dellosaneil.pokedex_mobile.android.theme
 
 object PokedexColorPalette {
     object TypeColors {
-        const val Normal = 0xffA8A77A
-        const val Fire = 0xffEE8130
-        const val Water = 0xff6390F0
-        const val Electric = 0xffF7D02C
-        const val Grass = 0xff7AC74C
-        const val Ice = 0xff96D9D6
-        const val Fighting = 0xffC22E28
-        const val Poison = 0xffA33EA1
-        const val Ground = 0xffE2BF65
-        const val Flying = 0xffA98FF3
-        const val Psychic = 0xffF95587
-        const val Bug = 0xffA6B91A
-        const val Rock = 0xffB6A136
-        const val Ghost = 0xff735797
-        const val Dragon = 0xff6F35FC
-        const val Dark = 0xff705746
-        const val Steel = 0xffB7B7CE
-        const val Fairy = 0xffD685AD
+        const val Normal = 0xFFF5EBC1
+        const val Fire = 0xFFFFA07A
+        const val Water = 0xFF87CEEB
+        const val Grass = 0xFF90EE90
+        const val Electric = 0xFFFFFF00
+        const val Ice = 0xFFADD8E6
+        const val Fighting = 0xFFF08080
+        const val Poison = 0xFFDA70D6
+        const val Ground = 0xFFF4A460
+        const val Flying = 0xFFE0FFFF
+        const val Psychic = 0xFFFFB6C1
+        const val Bug = 0xFFF0E68C
+        const val Rock = 0xFFD2B48C
+        const val Ghost = 0xFFDDA0DD
+        const val Dragon = 0xFFEE82EE
+        const val Dark = 0xFFA9A9A9
+        const val Steel = 0xFFB0C4DE
+        const val Fairy = 0xFFFFB6C1
     }
 
     object CommonColors {

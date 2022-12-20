@@ -22,7 +22,6 @@ class CoreRepositoryImpl(
         private const val POKEMON_LIST_LIMIT = 20
     }
 
-
     override suspend fun fetchPokemonList(isInitialLoad: Boolean): List<PreviewPokemon> {
         val response = if (isInitialLoad) {
             pokedexPagination.initialLoad(
@@ -43,8 +42,7 @@ class CoreRepositoryImpl(
 
     override suspend fun fetchPokemonDetail(id: Int): PokemonDetail {
         val response =
-            coreService().query(query = PokemonDetailQuery(limit = Optional.Present(value = 1),
-                offset = Optional.Present(value = id))).execute()
+            coreService().query(query = PokemonDetailQuery(id = Optional.Present(value = id))).execute()
         return mapPokemonDetail(data = response.data)
     }
 }

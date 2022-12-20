@@ -6,8 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.dellosaneil.pokedex_mobile.android.R
+import com.dellosaneil.pokedex_mobile.android.mvvm.pokemondetail.PokemonDetailViewModel
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeColorFactory.getComposeColors
 import com.dellosaneil.pokedex_mobile.android.theme.ComposeTypographyFactory.getComposeTypography
 import com.dellosaneil.pokedex_mobile.android.ui.common.PokemonTypeChip
@@ -26,11 +26,11 @@ import com.dellosaneil.pokedex_mobile.android.ui.transitions.PokedexTransitions
 import com.dellosaneil.pokedex_mobile.android.util.defaultImageLoader
 import com.dellosaneil.pokedex_mobile.android.util.getColor
 import com.dellosaneil.pokedex_mobile.android.util.toColor
-import com.dellosaneil.pokedex_mobile.model.pokemondetail.PokemonDetail
 import com.dellosaneil.pokedex_mobile.model.common.PokemonType
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.EmptyDestinationsNavigator
+import org.koin.androidx.compose.koinViewModel
 
 @Destination(style = PokedexTransitions::class)
 @Composable
@@ -38,10 +38,17 @@ fun PokemonDetailScreen(
     id: Int, backgroundColor: Long,
     navigator: DestinationsNavigator,
 ) {
+
+    val viewModel: PokemonDetailViewModel = koinViewModel()
+    val viewState by viewModel.viewState.collectAsState()
+    LaunchedEffect(key1 = Unit) {
+        viewModel.retrievePokemonDetail(id = id)
+    }
+
     val context = LocalContext.current
-    val pokemonDetail = PokemonDetail.compose()
     val imageLoader = defaultImageLoader(context = context)
     val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -57,13 +64,15 @@ fun PokemonDetailScreen(
                     }
             )
         },
-        backgroundColor = backgroundColor.toColor().copy(alpha = 0.80f),
+        backgroundColor = backgroundColor.toColor(),
         bottomBar = {
-            PokemonDetailBottomBar(
-                modifier = Modifier.fillMaxWidth(),
-                coroutineScope = coroutineScope,
-                pokemonDetail = pokemonDetail,
-            )
+            if(viewState.pokemonDetail != null) {
+                PokemonDetailBottomBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    coroutineScope = coroutineScope,
+                    pokemonDetail = viewState.pokemonDetail!!,
+                )
+            }
         }
     ) { paddingValues ->
         Column(
@@ -73,12 +82,12 @@ fun PokemonDetailScreen(
             verticalArrangement = Arrangement.spacedBy(space = 8.dp),
         ) {
             Text(
-                text = pokemonDetail.name,
+                text = viewState.pokemonDetail?.name ?: "",
                 style = getComposeTypography().bold28,
                 color = getComposeColors().commonColors.white,
             )
             Row(horizontalArrangement = Arrangement.spacedBy(space = 8.dp)) {
-                pokemonDetail.pokemonType.forEach { pokemonType ->
+                viewState.pokemonDetail?.pokemonType?.forEach { pokemonType ->
                     PokemonTypeChip(
                         modifier = Modifier,
                         type = pokemonType,
@@ -92,7 +101,7 @@ fun PokemonDetailScreen(
                     modifier = Modifier
                         .size(size = imageWidth)
                         .align(alignment = Alignment.Center),
-                    model = pokemonDetail.image,
+                    model = viewState.pokemonDetail?.image ?: "",
                     contentDescription = null,
                     imageLoader = imageLoader,
                     contentScale = ContentScale.Fit,
