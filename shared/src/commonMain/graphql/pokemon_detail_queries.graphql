@@ -23,4 +23,8 @@ query PokemonDetail($id: Int) {
             gender_rate
         }
     }
+    pokemon_v2_egggroup(where: {id: {_eq: $id}}) {
+        name
+    }
 }
+

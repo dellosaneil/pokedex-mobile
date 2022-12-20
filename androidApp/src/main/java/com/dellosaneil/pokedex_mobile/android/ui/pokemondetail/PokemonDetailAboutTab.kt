@@ -34,7 +34,6 @@ fun PokemonDetailAboutTab(
         modifier = modifier,
         verticalSpacing = 8.dp,
     ) {
-        AboutDetail(textRes = R.string.pokemon_detail_species, value = aboutPokemon.species)
         AboutDetail(textRes = R.string.pokemon_detail_height,
             value = stringResource(id = R.string.pokemon_detail_height_value,
                 aboutPokemon.height))
@@ -48,8 +47,6 @@ fun PokemonDetailAboutTab(
         )
         GenderDetail(textRes = R.string.pokemon_detail_gender,
             gender = aboutPokemon.gender)
-        AboutDetail(textRes = R.string.pokemon_detail_egg_groups, value = aboutPokemon.eggGroups)
-        AboutDetail(textRes = R.string.pokemon_detail_egg_cycle, value = aboutPokemon.eggCycle)
     }
 }
 

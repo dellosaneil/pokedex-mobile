@@ -48,13 +48,10 @@ class MapPokemonDetailImpl : MapPokemonDetail {
                 },
                 stat = pokemon_v2_pokemonstats.map { it.base_stat },
                 aboutPokemon = AboutPokemon(
-                    height = height ?: 0,
-                    weight = weight ?: 0,
+                    height = height?.times(10f) ?: 0f,
+                    weight = weight?.div(10f) ?: 0f,
                     abilities = abilities,
                     gender = genderRatio,
-                    species = "",
-                    eggGroups = "",
-                    eggCycle = "",
                 )
             )
         }
