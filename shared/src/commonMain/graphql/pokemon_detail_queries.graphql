@@ -21,6 +21,8 @@ query PokemonDetail($id: Int) {
         }
         pokemon_v2_pokemonspecy {
             gender_rate
+            base_happiness
+            capture_rate
         }
     }
     pokemon_v2_egggroup(where: {id: {_eq: $id}}) {

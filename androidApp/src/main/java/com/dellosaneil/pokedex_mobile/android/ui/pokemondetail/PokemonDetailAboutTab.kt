@@ -40,13 +40,10 @@ fun PokemonDetailAboutTab(
         AboutDetail(textRes = R.string.pokemon_detail_weight,
             value = stringResource(id = R.string.pokemon_detail_weight_value, aboutPokemon.weight))
         AboutDetail(textRes = R.string.pokemon_detail_abilities, value = aboutPokemon.abilities)
-        AboutDetail(
-            textRes = R.string.pokemon_detail_breeding, value = "",
-            style = getComposeTypography().bold20,
-            color = getComposeColors().commonColors.black,
-        )
         GenderDetail(textRes = R.string.pokemon_detail_gender,
             gender = aboutPokemon.gender)
+        AboutDetail(textRes = R.string.pokemon_detail_capture_rate, value = "${aboutPokemon.captureRate}%")
+        AboutDetail(textRes = R.string.pokemon_detail_base_happiness, value = "${aboutPokemon.baseHappiness}")
     }
 }
 
