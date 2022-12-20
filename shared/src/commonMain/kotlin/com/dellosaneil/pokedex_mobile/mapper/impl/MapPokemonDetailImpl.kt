@@ -52,6 +52,8 @@ class MapPokemonDetailImpl : MapPokemonDetail {
                     weight = weight?.div(10f) ?: 0f,
                     abilities = abilities,
                     gender = genderRatio,
+                    captureRate = pokemon_v2_pokemonspecy?.capture_rate ?: 0,
+                    baseHappiness = pokemon_v2_pokemonspecy?.base_happiness ?: 0,
                 )
             )
         }

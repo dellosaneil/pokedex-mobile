@@ -5,6 +5,8 @@ data class AboutPokemon(
     val weight: Float,
     val abilities: String,
     val gender: Pair<Float, Float>,
+    val captureRate: Int,
+    val baseHappiness: Int,
 ) {
     companion object {
         fun compose(): AboutPokemon {
@@ -13,6 +15,8 @@ data class AboutPokemon(
                 weight = 15f,
                 abilities = "Overgrow, Chlorophyl",
                 gender = 87.5f to 12.5f,
+                captureRate = 50,
+                baseHappiness = 50,
             )
         }
     }
