@@ -25,13 +25,16 @@ class MapPreviewPokemonImpl : MapPreviewPokemon {
             val jsonElement = Json.parseToJsonElement(spriteList)
             val jsonOther = jsonElement.jsonObject[OTHER_KEY]
             val jsonDreamWorld = jsonOther?.jsonObject?.get(DREAM_WORLD_KEY)
-            val image = jsonDreamWorld?.jsonObject?.get(POKEMON_IMAGE_KEY)?.jsonPrimitive?.content ?: ""
+            val image =
+                jsonDreamWorld?.jsonObject?.get(POKEMON_IMAGE_KEY)?.jsonPrimitive?.content ?: ""
+            val index = image.filter { it.isDigit() }.toInt()
+            val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/$index.svg"
             PreviewPokemon(
                 name = pokemon.name,
                 type = pokemon.pokemon_v2_pokemontypes.map {
                     PokemonType.getType(id = it.type_id ?: 0)
                 },
-                image = image,
+                image = imageUrl,
                 id = pokemon.id,
             )
         } ?: emptyList()

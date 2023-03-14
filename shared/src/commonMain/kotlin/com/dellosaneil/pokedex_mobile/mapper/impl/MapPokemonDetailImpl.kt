@@ -34,6 +34,8 @@ class MapPokemonDetailImpl : MapPokemonDetail {
             val femaleRate = (genderRate / 8f) * 100f
             val maleRate = 100 - femaleRate
             val genderRatio = maleRate to femaleRate
+            val index = gif.filter { it.isDigit() }.toInt()
+            val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/$index.gif"
             val abilities = pokemon_v2_pokemonabilities.map {
                 it.pokemon_v2_ability?.name
             }.mapNotNull { abilityName ->
@@ -42,7 +44,7 @@ class MapPokemonDetailImpl : MapPokemonDetail {
             }.joinToString(separator = ", ")
             PokemonDetail(
                 name = name,
-                image = gif,
+                image = imageUrl,
                 pokemonType = pokemon_v2_pokemontypes.map {
                     PokemonType.getType(id = it.type_id ?: 0)
                 },
